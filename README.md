@@ -48,4 +48,4 @@ In the next step, you'll add the `Patient` model and map it with `Doctor`.
 
 1- Add authentication
 
-2- Use uploading files to uplaod an image from your Computer for `Doctor` Picture. This Link might be helpful ![](https://spring.io/guides/gs/uploading-files/)
+2- Use uploading files to uplaod an image from your Computer for `Doctor` Picture. This Link might be helpful ![Uploading Files](https://spring.io/guides/gs/uploading-files/)
