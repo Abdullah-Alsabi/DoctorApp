@@ -22,7 +22,7 @@ In the next step, you'll use Spring Profile to create a development-specific env
 
 ### Step 3 (Spring Data)
 
-Your app will have  two data models: `Doctor` and `Patient`. You'll use MySQL as your database and Spring Data to talk to your database.
+Your app will have  two data models: `Doctor` and `Appointment`. You'll use MySQL as your database and Spring Data to talk to your database.
 
 #### Step 4
 
@@ -33,19 +33,19 @@ In this step, you'll only create a `Doctor` model.
 
 #### Step 5
 
-In the next step, you'll add the `Patient` model and map it with `Doctor`.
+In the next step, you'll add the `Appointment` model and map it with `Doctor`.
 
-- The `Patient` table should have at least two columns: `name`, `appointment`, and `reasonForVisit`.
-- The `Doctor` and `Patient` tables should be mapped to each other.
-- A user can add and delete a Patient.
-- A user should be able to view all of the Patients added
+- The `Appointment` table should have at least two columns: `date`, `patientName`, and `reasonForAppointment`.
+- The `Doctor` and `Appointment` tables should be mapped to each other.
+- A user can add and delete a Appointment.
+- A user should be able to view all of the Appointments added
 
 
-**Again, the mapping between the `Doctor` and `Patient` models is one-to-many mapping.** 
+**Again, the mapping between the `Doctor` and `Appointment` models is one-to-many mapping.** 
 
 
 ### Bonus
 
 1- Add authentication
 
-2- Use uploading files to uplaod an image from your Computer for `Doctor` Picture. This Link might be helpful ![Uploading Files](https://spring.io/guides/gs/uploading-files/)
+2- Use uploading files to uplaod an image from your Computer for `Doctor` Picture. This link might be helpful [Uploading Files](https://spring.io/guides/gs/uploading-files/)
