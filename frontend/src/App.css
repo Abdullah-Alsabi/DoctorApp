@@ -1,0 +1,29 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.App {
+  text-align: center;
+  
+  
+}
+.h1{
+  font-weight: bolder;
+}
+.continer{
+  /* background-image: url("https://img.freepik.com/free-photo/stethoscope-with-calendar-page-date-blue-background-doctor-appointment-medical-concept_293060-2158.jpg?size=626&ext=jpg") ; */
+ 
+
+  background: linear-gradient(
+       rgba(255,255,255,0.5),
+       rgba(255,255,255,0.5)
+       ),
+      url("https://img.freepik.com/free-photo/stethoscope-with-calendar-page-date-blue-background-doctor-appointment-medical-concept_293060-2158.jpg?size=626&ext=jpg");
+      background-repeat: no-repeat;
+      background-position:center;
+      background-size: cover;
+      width: 100%;
+      height: 100vh;
+
+}
+.homee{
+padding-top: 20%;
+}
