@@ -102,7 +102,7 @@ export default function Doctors() {
 
   return (
     <div className="doctor">
-      <Row xs={1} md={2} className="g-4">
+      <Row xs={1} md={3} className="g-4">
         {doctor.map((item) => {
           console.log(item);
           return (
@@ -140,14 +140,14 @@ export default function Doctors() {
                   </Card.Title>
                 </Card.Body>
                 <Card.Body>
-                  <Button onClick={handleShow} variant="outline-primary">
+                  <Button onClick={handleShow} variant="outline-secondary">
                     Update
                   </Button>{" "}
                   <Button
                     onClick={(e) => {
                       delDoc(e, item._id);
                     }}
-                    variant="outline-primary"
+                    variant="outline-danger"
                   >
                     Delete
                   </Button>{" "}
@@ -185,7 +185,7 @@ export default function Doctors() {
                   </Modal.Body>
                   <Modal.Footer>
                     <Button
-                      variant="primary"
+                      variant="dark"
                       onClick={(e) => {
                         updDoc(e, item._id);
                         handleClose();
