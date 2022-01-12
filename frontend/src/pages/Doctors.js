@@ -64,7 +64,7 @@ export default function Doctors() {
             <Col>
               <Card>
                 <Link to={`/appointments/${item._id}`}>
-                  <Card.Img variant="top" src={item.pic} alt="docpic" />
+                  <Card.Img variant="top" src={item.pic} alt="docpic"  style={{height: 100, width: 200}} />
                   <Card.Body>
                     <Card.Title>{item.name}</Card.Title>
                     <Card.Title>
@@ -74,14 +74,14 @@ export default function Doctors() {
                   </Card.Body>
                 </Link>
                 <Card.Body>
-                  <Button onClick={handleShow} variant="outline-primary">
+                  <Button onClick={handleShow} variant="outline-warning">
                     Update
                   </Button>{" "}
                   <Button
                     onClick={(e) => {
                       delDoc(e, item._id);
                     }}
-                    variant="outline-primary"
+                    variant="outline-danger"
                   >
                     Delete
                   </Button>{" "}
@@ -112,7 +112,7 @@ export default function Doctors() {
                   </Modal.Body>
                   <Modal.Footer>
                     <Button
-                      variant="primary"
+                      variant="dark"
                       onClick={(e) => {
                         updDoc(e, item._id);
                         handleClose();
@@ -145,7 +145,7 @@ export default function Doctors() {
     <Form.Control onChange={(e) => setPic(e.target.value)} placeholder="pic" />
   </Form.Group>
 
-  <Button onClick={()=> AaddDoc()} variant="primary">Add</Button>
+  <Button onClick={()=> AaddDoc()} variant="dark">Add</Button>
 </Form>
     </Card.Text>
     
