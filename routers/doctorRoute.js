@@ -39,7 +39,7 @@ router.get("/doctors/:id", (req, res) => {
     });
 });
 
-router.put("/updatedoctor/:id", (req, res) => {
+router.patch("/updatedoctor/:id", (req, res) => {
   Doctor.findByIdAndUpdate(req.params.id, req.body, (err) => {
     if (err) console.log(err);
     res.json("doctor updated!");
