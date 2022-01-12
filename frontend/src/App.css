@@ -2,6 +2,14 @@
 
 .App {
   text-align: center;
+ font-family:'EB Garamond', serif;
+ background-color:#D8E5E9 ;
+  
+}
+
+.h1{
+  color: #0a0a0a;
+  padding-right:30%;
   font-family: "EB Garamond", serif;
 }
 .logo {
@@ -15,6 +23,15 @@
 
 .continer {
   background: linear-gradient(
+       rgba(255,255,255,0.1),
+       rgba(255,255,255,0.4)
+       ),
+      url("https://i.pinimg.com/564x/a2/fe/3c/a2fe3c7072f88227e177f8335b76ea60.jpg");
+      background-repeat: no-repeat;
+      background-position:center;
+      background-size: cover;
+      width: 100%;
+      height: 100vh;
       rgba(255, 255, 255, 0.1),
       rgba(255, 255, 255, 0.4)
     ),
@@ -67,6 +84,10 @@
   margin: 10px 0;
   padding: 10px;
 }
+.homee{
+padding-top: 20%;
+padding-right: 30%;
+align-items:flex-start;
 
 .loginFrom button {
   width: 40%;
@@ -105,10 +126,12 @@
   margin-left: 20%;
   margin-right: 20%;
   margin-top: 5%;
+  padding-bottom: 5%;
 }
 .doctor {
   margin: 5%;
 }
+
 .h5 {
   color: #bd5943;
 }

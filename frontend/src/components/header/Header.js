@@ -11,9 +11,9 @@ const Header = () => {
         <Container>
           <Nav className="me-auto">
             <Navbar.Brand href="/">
-              <FaHospitalUser className="logo"></FaHospitalUser>{" "}
-              <h5 className="h5">Doctor App</h5>
+              <FaHospitalUser></FaHospitalUser> <h5>Doctor App</h5>
             </Navbar.Brand>
+            <h5 className="h5">Doctor App</h5>
             <div className="flex column justify-center ">
               <Nav.Link href="/doctors">
                 {" "}
@@ -25,6 +25,7 @@ const Header = () => {
                 <h5 className="h5">Login</h5>
               </Nav.Link>
             </div>
+            {/* <Nav.Link href="/doctors">Doctors</Nav.Link> */}
           </Nav>
         </Container>
       </Navbar>
