@@ -4,6 +4,9 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
 import { Card, Nav, Button, Row, Col, Modal, Form } from "react-bootstrap";
+
+import jwt_decode from "jwt-decode";
+
 import Loading from "../components/header/Loading";
 
 export default function Doctors() {
@@ -14,6 +17,10 @@ export default function Doctors() {
   const [imgSelected, setImgSelected] = useState("");
   const [setImg, setSetImg] = useState();
   const navigate = useNavigate();
+  let decodeToken = ""
+  // let decodeToken = jwt_decode(localStorage.getItem("token"))
+
+  console.log(decodeToken);
 
   const [show, setShow] = useState(false);
 
@@ -83,7 +90,16 @@ export default function Doctors() {
       });
     console.log(Id);
   }
+
+  
+  if (localStorage.getItem("token")) {
+    decodeToken = jwt_decode(localStorage.getItem("token"))
+  }
+
+
+=======
   if (loading) return <Loading />;
+
   return (
     <div className="doctor">
       <Row xs={1} md={2} className="g-4">
@@ -100,6 +116,21 @@ export default function Doctors() {
                     alt="docpic"
                   />
                 </Link>
+                {decodeToken.isAdmin && (
+                  <Card.Body>
+                    <Button onClick={handleShow} variant="outline-primary">
+                      Update
+                    </Button>{" "}
+                    <Button
+                      onClick={(e) => {
+                        delDoc(e, item._id);
+                      }}
+                      variant="outline-primary"
+                    >
+                      Delete
+                    </Button>{" "}
+                  </Card.Body>
+                )}
 
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
