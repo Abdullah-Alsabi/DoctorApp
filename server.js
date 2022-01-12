@@ -7,6 +7,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const doctorRoute = require("./routers/doctorRoute");
 const appointmentRoute = require("./routers/appointmentRoute");
+const authRoute = require("./routers/auth")
 
 require("dotenv").config();
 // Mongoose Here
@@ -33,6 +34,7 @@ app.use(cookieParser());
 
 app.use("/appointment", appointmentRoute);
 app.use("/doctor", doctorRoute);
+app.use("/auth", authRoute)
 
 // app.use(express.static("frontend/build"));
 // app.get("*", (req, res) => {
