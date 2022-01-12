@@ -62,4 +62,9 @@ router.delete("/deletedoctor/:id", (req, res) => {
     });
 });
 
+router.post("/upload", (req, res) => {
+  res.status(200).json({
+    success: "Success",
+  });
+});
 module.exports = router;
