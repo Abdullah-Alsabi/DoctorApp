@@ -6,7 +6,7 @@ router.post("/createDectore", async (req, res) => {
     name: req.body.name,
     specialty: req.body.specialty,
     pic: req.body.pic,
-    appointment: req.body.appointment,
+    _id: req.body._id,
   });
 
   try {

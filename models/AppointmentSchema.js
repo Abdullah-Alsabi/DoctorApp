@@ -18,9 +18,13 @@ const AppointmentSchema = new Schema(
     },
     _idDoc: {
       type: Number,
+      required: [true, "can't be blank"],
+      unique: true,
     },
     _idPat: {
       type: Number,
+      required: [true, "can't be blank"],
+      unique: true,
     },
   },
   { new: true }

@@ -13,7 +13,6 @@ const Header = () => {
             <Navbar.Brand href="/">
               <FaHospitalUser></FaHospitalUser> <h5>Doctor App</h5>
             </Navbar.Brand>
-            <h5 className="h5">Doctor App</h5>
             <div className="flex column justify-center ">
               <Nav.Link href="/doctors">
                 {" "}

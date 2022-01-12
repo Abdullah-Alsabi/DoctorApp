@@ -16,6 +16,7 @@ export default function Doctors() {
   const [specialty, setSpecialty] = useState();
   const [imgSelected, setImgSelected] = useState("");
   const [setImg, setSetImg] = useState();
+  const [id, setid] = useState(1);
   const navigate = useNavigate();
   let decodeToken = "";
   // let decodeToken = jwt_decode(localStorage.getItem("token"))
@@ -63,10 +64,12 @@ export default function Doctors() {
         name: name,
         specialty: specialty,
         pic: setImg,
+        _id: id,
       })
       .then((res) => {
         console.log(res);
         setDoctor(res.data);
+        setid(id + 1);
       });
   }
 
