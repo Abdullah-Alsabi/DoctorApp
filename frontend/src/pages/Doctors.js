@@ -17,7 +17,7 @@ export default function Doctors() {
   const [imgSelected, setImgSelected] = useState("");
   const [setImg, setSetImg] = useState();
   const navigate = useNavigate();
-  let decodeToken = ""
+  let decodeToken = "";
   // let decodeToken = jwt_decode(localStorage.getItem("token"))
 
   console.log(decodeToken);
@@ -91,13 +91,10 @@ export default function Doctors() {
     console.log(Id);
   }
 
-  
   if (localStorage.getItem("token")) {
-    decodeToken = jwt_decode(localStorage.getItem("token"))
+    decodeToken = jwt_decode(localStorage.getItem("token"));
   }
 
-
-=======
   if (loading) return <Loading />;
 
   return (
@@ -237,7 +234,12 @@ export default function Doctors() {
                   />
                 </Form.Group>
 
-                <Button onClick={() => AaddDoc()} variant="primary">
+                <Button
+                  onClick={() => {
+                    AaddDoc();
+                  }}
+                  variant="primary"
+                >
                   Add
                 </Button>
               </Form>

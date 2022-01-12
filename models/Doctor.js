@@ -17,8 +17,10 @@ const DoctorSchema = new mongoose.Schema({
     default:
       "https://static.toiimg.com/thumb/imgsize-433631,msid-77794986,width-400,resizemode-4/77794986.jpg",
   },
-
-  appointment: [Appointmemt],
+_id:{
+  type:Number
+  
+}
 });
 const Doctor = mongoose.model("doctor", DoctorSchema);
 module.exports = Doctor;

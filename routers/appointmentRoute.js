@@ -3,7 +3,7 @@ const router = Router();
 const Appointment = require("../models/AppointmentSchema");
 const Doctor = require("../models/Doctor");
 
-router.post("/appointment/:id", async (req, res) => {
+router.patch("/appointment/:id", async (req, res) => {
   const _id = req.params.id;
   const doc = await Doctor.findById(req.params.id);
 
@@ -15,15 +15,12 @@ router.post("/appointment/:id", async (req, res) => {
 
   doc.appointment.push(NewAppointment);
 
-    try {
-      await doc.save();
-      res.status(200).send(NewAppointment);
-     
-    } catch (e) {
-      console.error(e);
-    }
+  try {
+    await doc.save();
+    res.status(200).send(NewAppointment);
+  } catch (e) {
+    console.error(e);
+  }
 });
-
-
 
 module.exports = router;

@@ -16,6 +16,12 @@ const AppointmentSchema = new Schema(
     reasonForAppointment: {
       type: String,
     },
+    _idDoc: {
+      type: Number,
+    },
+    _idPat: {
+      type: Number,
+    },
   },
   { new: true }
 );
