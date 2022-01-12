@@ -2,21 +2,24 @@
 
 .App {
   text-align: center;
+ font-family:'EB Garamond', serif;
   
-  
+}
+.logo{
+  color: rgb(248, 199, 39);
 }
 .h1{
-  font-weight: bolder;
+  color: #BD5943;
+  padding-left: 30px;
+  padding-bottom: 3%;
 }
-.continer{
-  /* background-image: url("https://img.freepik.com/free-photo/stethoscope-with-calendar-page-date-blue-background-doctor-appointment-medical-concept_293060-2158.jpg?size=626&ext=jpg") ; */
- 
 
+.continer{
   background: linear-gradient(
-       rgba(255,255,255,0.5),
-       rgba(255,255,255,0.5)
+       rgba(255,255,255,0.1),
+       rgba(255,255,255,0.4)
        ),
-      url("https://img.freepik.com/free-photo/stethoscope-with-calendar-page-date-blue-background-doctor-appointment-medical-concept_293060-2158.jpg?size=626&ext=jpg");
+      url("https://images.pexels.com/photos/4226769/pexels-photo-4226769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
       background-repeat: no-repeat;
       background-position:center;
       background-size: cover;
@@ -100,4 +103,14 @@ padding-top: 20%;
   font-size: 30px;
   color: #fff;
   cursor: pointer;
+.add{
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5%;
+}
+.doctor{
+  margin: 5%;
+}
+.h5{
+  color:#BD5943;
 }
