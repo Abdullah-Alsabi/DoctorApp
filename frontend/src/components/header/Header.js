@@ -9,7 +9,7 @@ const Header = () => {
       <Navbar bg="light" variant="light">
         <Container>
           <Nav className="me-auto">
-            <Navbar.Brand href="/"><FaHospitalUser className="logo"  ></FaHospitalUser> <h5 className="h5">Doctor App</h5></Navbar.Brand>
+            <Navbar.Brand href="/"><FaHospitalUser ></FaHospitalUser> <h5>Doctor App</h5></Navbar.Brand>
             {/* <Nav.Link href="/doctors">Doctors</Nav.Link> */}
           </Nav>
         </Container>

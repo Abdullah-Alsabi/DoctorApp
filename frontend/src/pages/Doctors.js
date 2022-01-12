@@ -58,7 +58,7 @@ export default function Doctors() {
 
   return (
     <div className="doctor">
-      <Row xs={1} md={2} className="g-4">
+      <Row xs={1} md={3} className="g-4">
         {doctor.map((item) => {
           return (
             <Col>
@@ -74,7 +74,7 @@ export default function Doctors() {
                   </Card.Body>
                 </Link>
                 <Card.Body>
-                  <Button onClick={handleShow} variant="outline-warning">
+                  <Button onClick={handleShow} variant="outline-secondary">
                     Update
                   </Button>{" "}
                   <Button
