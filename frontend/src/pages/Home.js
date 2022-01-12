@@ -5,11 +5,11 @@ const Home = () => {
     <div className="continer">
       <div className="homee">
    
-          <h1 className="mt-5">Welcome to the appointment system</h1>
-        
-        <Button href="/doctors" className="mt-5" variant="primary">
+          <h1 className="h1">Welcome to the appointment system</h1>
+          <Button  href="/doctors" variant="warning"> Doctors{" "}</Button>{' '}
+        {/* <Button href="/doctors" className="mt-5" variant="primary">
           Doctors{" "}
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

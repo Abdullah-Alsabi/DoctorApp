@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
-import { Card, Nav, Button, Row, Col, Modal } from "react-bootstrap";
+import { Card, Nav, Button, Row, Col, Modal, Form } from "react-bootstrap";
 
 export default function Doctors() {
   const [doctor, setDoctor] = useState([]);
@@ -23,6 +23,19 @@ export default function Doctors() {
       console.log(res.data);
     });
   }, []);
+
+  function AaddDoc(){
+    axios.post('/doctor/createDectore', {
+      name:name,
+      specialty:specialty,
+      pic: pic,
+
+    })
+    .then((res) => {
+      console.log(res);
+      setDoctor(res.data);
+    });
+  }
 
   function delDoc(e, _id) {
     axios.delete(`/doctor/deletedoctor/${_id}`).then((res) => {
@@ -44,7 +57,7 @@ export default function Doctors() {
   }
 
   return (
-    <div>
+    <div className="doctor">
       <Row xs={1} md={2} className="g-4">
         {doctor.map((item) => {
           return (
@@ -114,14 +127,31 @@ export default function Doctors() {
           );
         })}
       </Row>
-      <hr/>
-      <div>
-      <input onChange={(e) => setName(e.target.value)} placeholder="Name"></input>{" "}<br/>
-      <input onChange={(e) => setSpecialty(e.target.value)} placeholder="Specialty"></input>{" "}<br/>
-      <input onChange={(e) => setPic(e.target.value)} placeholder="pic" ></input>{" "}<br/>
-      </div>
-      <hr/>
+      <div className="add">
+      <Card className="text-center">
+  <Card.Body>
+    <Card.Title>Add Doctors</Card.Title>
+    <Card.Text>
+    <Form>
+  <Form.Group className="mb-3" >
+    <Form.Control onChange={(e) => setName(e.target.value)} placeholder="Name" />
+  </Form.Group>
 
+  <Form.Group className="mb-3" >
+    <Form.Control onChange={(e) => setSpecialty(e.target.value)} placeholder="Specialty" />
+  </Form.Group>
+
+  <Form.Group className="mb-3" >
+    <Form.Control onChange={(e) => setPic(e.target.value)} placeholder="pic" />
+  </Form.Group>
+
+  <Button onClick={()=> AaddDoc()} variant="primary">Add</Button>
+</Form>
+    </Card.Text>
+    
+  </Card.Body>
+</Card>
+      </div>
     </div>
   );
 }
