@@ -27,3 +27,77 @@
 .homee{
 padding-top: 20%;
 }
+
+
+/* LOGIN style */
+.login {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://us.123rf.com/450wm/twinsterphoto/twinsterphoto1606/twinsterphoto160600032/58435244-close-up-of-male-doctor-using-stethoscope-and-focusing-on-stethoscope.jpg?ver=6")
+      center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper {
+  width: 25%;
+  padding: 20px;
+  background-color: white;
+  opacity: 0.9;
+}
+
+.loginTitle {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.loginFrom {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginFrom input{
+  flex: 1;
+  min-width: 40%;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.loginFrom button {
+  width: 40%;
+  border: none;
+  padding: 15px 20px;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.loginFrom a {
+  margin: 5px 0px;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+/* Appointments */
+.appointments {
+  position: relative;
+}
+.addAppointments {
+  position: absolute;
+  top: 500px;
+  left: 90%;
+  background-color: blue;
+  padding: 15px;
+  border-radius: 30%;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+}
