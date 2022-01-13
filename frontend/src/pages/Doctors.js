@@ -98,8 +98,6 @@ export default function Doctors() {
     decodeToken = jwt_decode(localStorage.getItem("token"));
   }
 
-
-
   if (loading) return <Loading />;
 
   return (
@@ -118,42 +116,27 @@ export default function Doctors() {
                     alt="docpic"
                   />
                 </Link>
+
                 {decodeToken.isAdmin && (
                   <Card.Body>
-                    <Button onClick={handleShow} variant="outline-primary">
+                    <Card.Title>{item.name}</Card.Title>
+                    <Card.Title>
+                      {" "}
+                      <h5>{item.specialty}</h5>
+                    </Card.Title>
+                    <Button onClick={handleShow} variant="outline-secondary">
                       Update
                     </Button>{" "}
                     <Button
                       onClick={(e) => {
                         delDoc(e, item._id);
                       }}
-                      variant="outline-primary"
+                      variant="outline-danger"
                     >
                       Delete
                     </Button>{" "}
                   </Card.Body>
                 )}
-
-                <Card.Body>
-                  <Card.Title>{item.name}</Card.Title>
-                  <Card.Title>
-                    {" "}
-                    <h5>{item.specialty}</h5>
-                  </Card.Title>
-                </Card.Body>
-                <Card.Body>
-                  <Button onClick={handleShow} variant="outline-secondary">
-                    Update
-                  </Button>{" "}
-                  <Button
-                    onClick={(e) => {
-                      delDoc(e, item._id);
-                    }}
-                    variant="outline-danger"
-                  >
-                    Delete
-                  </Button>{" "}
-                </Card.Body>
               </Card>
               <>
                 <Modal show={show} onHide={handleClose}>
