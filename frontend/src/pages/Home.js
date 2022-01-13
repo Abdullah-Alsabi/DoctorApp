@@ -6,7 +6,8 @@ const Home = () => {
       <div className="homee">
    
           <h1 className="h1">Welcome to the appointment system</h1>
-          <Button  href="/doctors" variant="dark"> Doctors{" "}</Button>{' '}
+          <Button  href="/doctors" variant="warning"> Doctors{" "}</Button>{' '}
+          <Button  href="/patients" variant="warning"> Patients{" "}</Button>{' '}
         {/* <Button href="/doctors" className="mt-5" variant="primary">
           Doctors{" "}
         </Button> */}

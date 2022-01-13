@@ -98,6 +98,8 @@ export default function Doctors() {
     decodeToken = jwt_decode(localStorage.getItem("token"));
   }
 
+
+
   if (loading) return <Loading />;
 
   return (
