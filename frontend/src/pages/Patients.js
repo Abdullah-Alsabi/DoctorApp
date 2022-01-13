@@ -10,6 +10,7 @@ import jwt_decode from "jwt-decode";
 import Loading from "../components/header/Loading";
 
 export default function Patients() {
+  const [state, setState] = useState(true);
   const [loading, setloading] = useState(true);
   const [patient, setPatient] = useState([]);
   const [id, setId] = useState();
@@ -33,18 +34,18 @@ export default function Patients() {
       setloading(false);
       console.log(res.data);
     });
-  }, []);
+  }, [state]);
 
   function addPatient() {
     axios.post("/patient", { id, name, age }).then((res) => {
       console.log(res);
-      setPatient(res.data);
+      setState(!state)
     });
   }
 
   function deletePatient(e, _id) {
     axios.delete(`/patient/${_id}`).then((res) => {
-      setPatient(res.data);
+      setState(!state)
     });
   }
 
@@ -52,7 +53,7 @@ export default function Patients() {
     e.preventDefault();
     console.log(e.currentTarget);
     axios.put(`/patient/${Id}`, { id, name, age }).then((res) => {
-      setPatient(res.data);
+      setState(!state)
     });
     console.log(Id);
   }

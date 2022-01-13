@@ -10,6 +10,7 @@ import jwt_decode from "jwt-decode";
 import Loading from "../components/header/Loading";
 
 export default function Doctors() {
+  const [state, setState] = useState(true);
   const [loading, setloading] = useState(true);
   const [doctor, setDoctor] = useState([]);
   const [name, setName] = useState();
@@ -34,7 +35,7 @@ export default function Doctors() {
       setloading(false);
       console.log(res.data);
     });
-  }, []);
+  }, [state]);
 
   useEffect(() => {
     if (imgSelected !== "") {
@@ -68,14 +69,14 @@ export default function Doctors() {
       })
       .then((res) => {
         console.log(res);
-        setDoctor(res.data);
+        setState(!state);
         setid(id + 1);
       });
   }
 
   function delDoc(e, _id) {
     axios.delete(`/doctor/deletedoctor/${_id}`).then((res) => {
-      setDoctor(res.data);
+      setState(!state);
     });
   }
 
@@ -89,7 +90,7 @@ export default function Doctors() {
         pic: setImg,
       })
       .then((res) => {
-        setDoctor(res.data);
+        setState(!state);
       });
     console.log(Id);
   }
