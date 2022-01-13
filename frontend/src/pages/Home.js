@@ -7,6 +7,7 @@ const Home = () => {
    
           <h1 className="h1">Welcome to the appointment system</h1>
           <Button  href="/doctors" variant="warning"> Doctors{" "}</Button>{' '}
+          <Button  href="/patients" variant="warning"> Patients{" "}</Button>{' '}
         {/* <Button href="/doctors" className="mt-5" variant="primary">
           Doctors{" "}
         </Button> */}

@@ -1,23 +1,22 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
-import { Card, Nav, Button, Row, Col, Modal, Form } from "react-bootstrap";
+import { Card, Button, Row, Col, Modal, Form } from "react-bootstrap";
 
 import jwt_decode from "jwt-decode";
 
 import Loading from "../components/header/Loading";
 
-export default function Doctors() {
+export default function Patients() {
   const [loading, setloading] = useState(true);
-  const [doctor, setDoctor] = useState([]);
+  const [patient, setPatient] = useState([]);
+  const [id, setId] = useState();
   const [name, setName] = useState();
-  const [specialty, setSpecialty] = useState();
-  const [imgSelected, setImgSelected] = useState("");
-  const [setImg, setSetImg] = useState();
+  const [age, setAge] = useState();
   const navigate = useNavigate();
-  let decodeToken = ""
+  let decodeToken = "";
   // let decodeToken = jwt_decode(localStorage.getItem("token"))
 
   console.log(decodeToken);
@@ -28,82 +27,62 @@ export default function Doctors() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    axios.get("/doctor/doctors").then((res) => {
-      setDoctor(res.data);
+    axios.get("/patient").then((res) => {
+      setPatient(res.data);
       setloading(false);
       console.log(res.data);
     });
   }, []);
 
-  useEffect(() => {
-    if (imgSelected !== "") {
-      imageHandler();
-    }
-  }, [imgSelected]);
-
-  const imageHandler = (e) => {
-    const formData = new FormData();
-    formData.append("file", imgSelected);
-    formData.append("upload_preset", "d7grddkn");
-
-    console.log("image ", formData);
-    axios
-      .post(
-        "http://api.cloudinary.com/v1_1/tuwaiq-bootcamp/image/upload",
-        formData
-      )
-      .then((res) => {
-        console.log(res.data.secure_url);
-        setSetImg(res.data.secure_url);
-      });
-  };
-  function AaddDoc() {
-    axios
-      .post("/doctor/createDectore", {
-        name: name,
-        specialty: specialty,
-        pic: setImg,
-      })
-      .then((res) => {
-        console.log(res);
-        setDoctor(res.data);
-      });
-  }
-
-  function delDoc(e, _id) {
-    axios.delete(`/doctor/deletedoctor/${_id}`).then((res) => {
-      setDoctor(res.data);
+  function addPatient() {
+    axios.post("/patient", { id, name, age }).then((res) => {
+      console.log(res);
+      setPatient(res.data);
     });
   }
 
-  function updDoc(e, Id) {
+  function deletePatient(e, _id) {
+    axios.delete(`/patient/${_id}`).then((res) => {
+      setPatient(res.data);
+    });
+  }
+
+  function updatePatient(e, Id) {
     e.preventDefault();
     console.log(e.currentTarget);
-    axios
-      .patch(`/doctor/updatedoctor/${Id}`, {
-        name: name,
-        specialty: specialty,
-        pic: setImg,
-      })
-      .then((res) => {
-        setDoctor(res.data);
-      });
+    axios.put(`/patient/${Id}`, { id, name, age }).then((res) => {
+      setPatient(res.data);
+    });
     console.log(Id);
   }
 
-  
   if (localStorage.getItem("token")) {
-    decodeToken = jwt_decode(localStorage.getItem("token"))
+    decodeToken = jwt_decode(localStorage.getItem("token"));
   }
 
-
-
   if (loading) return <Loading />;
-
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(e.target[0].value);
+    navigate(`/patient/${e.target[0].value}`);
+  };
   return (
     <div className="doctor">
+      <Row>
+        <Form onSubmit={handleSearch}>
+          <Form.Control
+            placeholder="Search for a patient"
+            onChange={(e) => console.log(e.target.value)}
+          />
+          <button type="submit" className="btn btn-warning">
+            <svg width="15px" height="15px">
+              <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
+            </svg>
+          </button>
+        </Form>
+      </Row>
       <Row xs={1} md={2} className="g-4">
-        {doctor.map((item) => {
+        {patient.map((item) => {
           console.log(item);
           return (
             <Col>
@@ -123,7 +102,7 @@ export default function Doctors() {
                     </Button>{" "}
                     <Button
                       onClick={(e) => {
-                        delDoc(e, item._id);
+                        deletePatient(e, item._id);
                       }}
                       variant="outline-primary"
                     >
@@ -136,7 +115,7 @@ export default function Doctors() {
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Title>
                     {" "}
-                    <h5>{item.specialty}</h5>
+                    <h5>{item.age}</h5>
                   </Card.Title>
                 </Card.Body>
                 <Card.Body>
@@ -145,7 +124,7 @@ export default function Doctors() {
                   </Button>{" "}
                   <Button
                     onClick={(e) => {
-                      delDoc(e, item._id);
+                      deletePatient(e, item._id);
                     }}
                     variant="outline-primary"
                   >
@@ -161,33 +140,29 @@ export default function Doctors() {
                   <Modal.Body>
                     <input
                       className="updateInput"
+                      type="number"
+                      onChange={(e) => {
+                        setId(e.target.value);
+                      }}
+                      placeholder="id"
+                    ></input>
+                    <input
+                      className="updateInput"
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Name"
                     ></input>{" "}
                     <input
                       className="updateInput"
-                      onChange={(e) => setSpecialty(e.target.value)}
-                      placeholder="Specialty"
+                      onChange={(e) => setAge(e.target.value)}
+                      placeholder="Age"
+                      type="number"
                     ></input>{" "}
-                    <input
-                      type="file"
-                      name="image-upload"
-                      id="input"
-                      accept="image/*"
-                      onChange={(event) => {
-                        setImgSelected(event.target.files[0]);
-                      }}
-                    ></input>
-                    <img
-                      style={{ height: "150px", width: "250px" }}
-                      src={setImg}
-                    />
                   </Modal.Body>
                   <Modal.Footer>
                     <Button
                       variant="primary"
                       onClick={(e) => {
-                        updDoc(e, item._id);
+                        updatePatient(e, item._id);
                         handleClose();
                       }}
                     >
@@ -209,6 +184,14 @@ export default function Doctors() {
               <Form>
                 <Form.Group className="mb-3">
                   <Form.Control
+                    onChange={(e) => setId(e.target.value)}
+                    placeholder="id"
+                    type="number"
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Control
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Name"
                   />
@@ -216,28 +199,13 @@ export default function Doctors() {
 
                 <Form.Group className="mb-3">
                   <Form.Control
-                    onChange={(e) => setSpecialty(e.target.value)}
-                    placeholder="Specialty"
+                    onChange={(e) => setAge(e.target.value)}
+                    placeholder="age"
+                    type="number"
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3">
-                  <input
-                    type="file"
-                    name="image-upload"
-                    id="input"
-                    accept="image/*"
-                    onChange={(event) => {
-                      setImgSelected(event.target.files[0]);
-                    }}
-                  ></input>
-                  <img
-                    style={{ height: "50px", width: "100px" }}
-                    src={setImg}
-                  />
-                </Form.Group>
-
-                <Button onClick={() => AaddDoc()} variant="primary">
+                <Button onClick={() => addPatient()} variant="primary">
                   Add
                 </Button>
               </Form>
