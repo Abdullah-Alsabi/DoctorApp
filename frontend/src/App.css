@@ -3,6 +3,13 @@
 .App {
   text-align: center;
   font-family: "EB Garamond", serif;
+  background-color: #d8e5e9;
+}
+
+.h1 {
+  color: #0a0a0a;
+  padding-right: 30%;
+  font-family: "EB Garamond", serif;
 }
 .logo {
   color: rgb(248, 199, 39);
@@ -18,7 +25,7 @@
       rgba(255, 255, 255, 0.1),
       rgba(255, 255, 255, 0.4)
     ),
-    url("https://images.pexels.com/photos/4226769/pexels-photo-4226769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    url("https://i.pinimg.com/564x/a2/fe/3c/a2fe3c7072f88227e177f8335b76ea60.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -67,7 +74,11 @@
   margin: 10px 0;
   padding: 10px;
 }
-
+.homee {
+  padding-top: 20%;
+  padding-right: 30%;
+  align-items: flex-start;
+}
 .loginFrom button {
   width: 40%;
   border: none;
@@ -105,10 +116,12 @@
   margin-left: 20%;
   margin-right: 20%;
   margin-top: 5%;
+  padding-bottom: 5%;
 }
 .doctor {
   margin: 5%;
 }
+
 .h5 {
   color: #bd5943;
 }

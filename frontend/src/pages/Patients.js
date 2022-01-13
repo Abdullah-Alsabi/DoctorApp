@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
-import { Card, Button, Row, Col, Modal, Form } from "react-bootstrap";
+import { Card, Button, Row, Col, Modal, Form, Alert } from "react-bootstrap";
 
 import jwt_decode from "jwt-decode";
 
@@ -15,6 +15,7 @@ export default function Patients() {
   const [id, setId] = useState();
   const [name, setName] = useState();
   const [age, setAge] = useState();
+  const [searchWarning,setSearchWarning]=useState(false)
   const navigate = useNavigate();
   let decodeToken = "";
   // let decodeToken = jwt_decode(localStorage.getItem("token"))
@@ -62,14 +63,25 @@ export default function Patients() {
 
   if (loading) return <Loading />;
   const handleSearch = (e) => {
+      setSearchWarning(false)
     e.preventDefault();
-    console.log(e.target[0].value);
-    navigate(`/patient/${e.target[0].value}`);
+    axios.get(`/patient/${e.target[0].value}`).then((res)=>{
+        console.log(e.target[0].value);
+        if(res.data)
+        navigate(`/patient/${e.target[0].value}`);
+        else
+        setSearchWarning(true)
+    }).catch((err)=>{
+        
+        console.log('error searching patient:',err);
+    })
+    
   };
   return (
     <div className="doctor">
       <Row>
         <Form onSubmit={handleSearch}>
+        {searchWarning?<Alert variant='danger'>Couldn't find user with that ID</Alert>:''}
           <Form.Control
             placeholder="Search for a patient"
             onChange={(e) => console.log(e.target.value)}
@@ -87,14 +99,6 @@ export default function Patients() {
           return (
             <Col>
               <Card>
-                <Link to={`/appointments/${item._id}`}>
-                  <Card.Img
-                    style={{ height: "250px", width: "400px" }}
-                    variant="top"
-                    src={item.pic}
-                    alt="docpic"
-                  />
-                </Link>
                 {decodeToken.isAdmin && (
                   <Card.Body>
                     <Button onClick={handleShow} variant="outline-primary">
@@ -110,14 +114,20 @@ export default function Patients() {
                     </Button>{" "}
                   </Card.Body>
                 )}
-
+<Link to={`/patient/${item._id}`}>
+                  
+                 
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
+                  <Card.Title>
+                    
+                    <h5>{" ID:"}<span>{item._id}</span></h5>
+                  </Card.Title>
                   <Card.Title>
                     {" "}
                     <h5>{item.age}</h5>
                   </Card.Title>
-                </Card.Body>
+                </Card.Body> </Link>
                 <Card.Body>
                   <Button onClick={handleShow} variant="outline-primary">
                     Update

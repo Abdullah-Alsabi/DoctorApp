@@ -16,8 +16,9 @@ export default function Doctors() {
   const [specialty, setSpecialty] = useState();
   const [imgSelected, setImgSelected] = useState("");
   const [setImg, setSetImg] = useState();
+  const [id, setid] = useState(1);
   const navigate = useNavigate();
-  let decodeToken = ""
+  let decodeToken = "";
   // let decodeToken = jwt_decode(localStorage.getItem("token"))
 
   console.log(decodeToken);
@@ -63,10 +64,12 @@ export default function Doctors() {
         name: name,
         specialty: specialty,
         pic: setImg,
+        _id: id,
       })
       .then((res) => {
         console.log(res);
         setDoctor(res.data);
+        setid(id + 1);
       });
   }
 
@@ -91,9 +94,8 @@ export default function Doctors() {
     console.log(Id);
   }
 
-  
   if (localStorage.getItem("token")) {
-    decodeToken = jwt_decode(localStorage.getItem("token"))
+    decodeToken = jwt_decode(localStorage.getItem("token"));
   }
 
 
@@ -102,7 +104,7 @@ export default function Doctors() {
 
   return (
     <div className="doctor">
-      <Row xs={1} md={2} className="g-4">
+      <Row xs={1} md={3} className="g-4">
         {doctor.map((item) => {
           console.log(item);
           return (
@@ -140,14 +142,14 @@ export default function Doctors() {
                   </Card.Title>
                 </Card.Body>
                 <Card.Body>
-                  <Button onClick={handleShow} variant="outline-primary">
+                  <Button onClick={handleShow} variant="outline-secondary">
                     Update
                   </Button>{" "}
                   <Button
                     onClick={(e) => {
                       delDoc(e, item._id);
                     }}
-                    variant="outline-primary"
+                    variant="outline-danger"
                   >
                     Delete
                   </Button>{" "}
@@ -185,7 +187,7 @@ export default function Doctors() {
                   </Modal.Body>
                   <Modal.Footer>
                     <Button
-                      variant="primary"
+                      variant="dark"
                       onClick={(e) => {
                         updDoc(e, item._id);
                         handleClose();
@@ -237,7 +239,12 @@ export default function Doctors() {
                   />
                 </Form.Group>
 
-                <Button onClick={() => AaddDoc()} variant="primary">
+                <Button
+                  onClick={() => {
+                    AaddDoc();
+                  }}
+                  variant="primary"
+                >
                   Add
                 </Button>
               </Form>
