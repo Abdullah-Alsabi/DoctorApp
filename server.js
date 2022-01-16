@@ -38,11 +38,26 @@ app.use("/doctor", doctorRoute);
 app.use("/patient", patientRoute)
 app.use("/auth", authRoute)
 
-// app.use(express.static("frontend/build"));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "frontend/build/index.html"));
-// });
-
+in the server before listen to port put this
+ app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend/build/index.html"));
+});
+also require path
+const path = require("path");
+and the port
+const PORT = process.env.PORT || 3001;
+then put this after other uses
+app.use(express.static("frontend/build"));
+then in the pacjege json scripts to this
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd frontend && npm run build",
+    "install-client": "cd frontend && npm install",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build",
+    "start": "nodemon server",
+    "client": "cd frontend && npm start"
+  }
+and becarfull to naming in the build and app.use and install client and client
 app.listen(PORT, () => {
   console.log(`Connected on= http://localhost:${PORT}`);
 });
