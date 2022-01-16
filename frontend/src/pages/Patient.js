@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const Patient = () => {
+  const [chosenPatient,setChosenPatient]=useState({})
   const [patient, setPatient] = useState([]);
   const location = useLocation();
   const patientId = location.pathname.split("/")[2];

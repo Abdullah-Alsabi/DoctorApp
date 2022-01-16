@@ -32,6 +32,7 @@ export default function Doctors() {
   useEffect(() => {
     axios.get("/doctor/doctors").then((res) => {
       setDoctor(res.data);
+      setid(res.data[res.data.length - 1]._id + 1);
       setloading(false);
       console.log(res.data);
     });
